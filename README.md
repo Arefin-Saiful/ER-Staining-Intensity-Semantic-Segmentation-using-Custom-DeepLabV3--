@@ -1,0 +1,2 @@
+# ER Staining Intensity Semantic Segmentation using Custom DeepLabV3+ 
+A deep-learning project that performs 5-class semantic segmentation on ER immunohistochemistry (IHC) images to label tissue regions by staining intensity (background, normal, weak, moderate, strong). It trains a custom DeepLabV3+ model with class-balanced sampling/loss, evaluates using 5-fold cross-validation, and compares results against pretrained baselines.
