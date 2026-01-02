@@ -1,0 +1,54 @@
+DATASET DESCRIPTION (PRIVATE)
+
+1) What this dataset contains
+- ER (Estrogen Receptor) Immunohistochemistry (IHC) intensity images.
+- A paired segmentation mask for each image (pixel-level labels).
+- The task is 5-class semantic segmentation:
+  0 Background
+  1 Normal
+  2 Weak
+  3 Moderate
+  4 Strong
+
+2) Privacy & sharing
+- This dataset is private and NOT distributed with the repository.
+- Do not upload images/masks to public repos. Keep them in secure storage.
+
+3) Expected folder structure
+Place the dataset anywhere on your machine, for example:
+
+/path/to/er_dataset/
+├── images/
+│   ├── 0001.png
+│   ├── 0002.png
+│   └── ...
+└── masks/
+    ├── 0001.png
+    ├── 0002.png
+    └── ...
+
+Important:
+- Image and mask filenames must match 1-to-1 (same stem), e.g.:
+  images/0001.png  ↔ masks/0001.png
+
+4) Image format
+- Images: PNG (RGB), typically microscopy/WSI-derived tiles or patches.
+- Masks: PNG (RGB). Each pixel’s RGB color encodes the class ID.
+
+5) Mask color-to-class mapping (RGB → ID)
+- (0,   0,   0)   → 0  Background
+- (0, 159, 255)   → 1  Normal
+- (0, 255,   0)   → 2  Weak
+- (255,216,  0)   → 3  Moderate
+- (255,  0,  0)   → 4  Strong
+
+6) How the code uses the dataset
+- The notebook pairs images and masks by filename.
+- Masks are converted from RGB to integer class IDs internally.
+- Training uses class-aware sampling/cropping to address class imbalance.
+- Evaluation is performed via 5-fold stratified cross-validation.
+
+7) Where to set dataset paths
+In the notebook config cell, update:
+- IMG_DIR = Path("/path/to/er_dataset/images")
+- MSK_DIR = Path("/path/to/er_dataset/masks")
